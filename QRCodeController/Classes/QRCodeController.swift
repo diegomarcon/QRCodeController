@@ -11,6 +11,8 @@ public class QRCodeController: UIViewController {
     private var previewLayer: AVCaptureVideoPreviewLayer?
     
     public var callback: QRCodeControllerCallback?
+    public var borderColor = UIColor.greenColor()
+    public var borderWidth: CGFloat = 2
     
     private var decodedOutput: String? {
         didSet {
@@ -53,8 +55,8 @@ public class QRCodeController: UIViewController {
     }
     
     private func configureBorderView() {
-        borderView.layer.borderColor = UIColor.greenColor().CGColor
-        borderView.layer.borderWidth = 2
+        borderView.layer.borderColor = borderColor.CGColor
+        borderView.layer.borderWidth = borderWidth
         view.addSubview(borderView)
         view.bringSubviewToFront(borderView)
     }
