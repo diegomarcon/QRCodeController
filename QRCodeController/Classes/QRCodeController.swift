@@ -12,6 +12,16 @@ public class QRCodeController: UIViewController {
     
     public var callback: QRCodeControllerCallback?
     
+    private var decodedOutput: String? {
+        didSet {
+            if let newValue = decodedOutput {
+                if newValue != oldValue {
+                    callback?(newValue)
+                }
+            }
+        }
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -61,10 +71,7 @@ extension QRCodeController: AVCaptureMetadataOutputObjectsDelegate {
         }
         
         updateBorderViewBounds(previewLayer?.transformedMetadataObjectForMetadataObject(metadataObject))
-        
-        if let decodedOutput = metadataObject.stringValue {
-            callback?(decodedOutput)
-        }
+        decodedOutput = metadataObject.stringValue
     }
     
     private func updateBorderViewBounds(barCodeObject: AVMetadataObject?) {
