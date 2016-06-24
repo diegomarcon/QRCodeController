@@ -1,0 +1,16 @@
+PODS:
+  - QRCodeController (0.1.0)
+
+DEPENDENCIES:
+  - QRCodeController (from `../`)
+
+EXTERNAL SOURCES:
+  QRCodeController:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  QRCodeController: f67d9d40be92c99f62d9cd98f2f8de595c469a03
+
+PODFILE CHECKSUM: ed0d9a95c49dc5517871d08c7a8b333147579722
+
+COCOAPODS: 1.0.1

@@ -1,0 +1,22 @@
+{
+  "name": "QRCodeController",
+  "version": "0.1.0",
+  "summary": "A short description of QRCodeController.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/QRCodeController",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Diego Marcon": "diego.marcon@corp.globo.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/QRCodeController.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "QRCodeController/Classes/**/*"
+}

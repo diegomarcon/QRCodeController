@@ -1,0 +1,6 @@
+framework module QRCodeController {
+  umbrella header "QRCodeController-umbrella.h"
+
+  export *
+  module * { export * }
+}
