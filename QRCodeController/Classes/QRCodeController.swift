@@ -1,5 +1,6 @@
 import UIKit
 import AVFoundation
+import AudioToolbox
 
 public class QRCodeController: UIViewController {
     
@@ -13,14 +14,23 @@ public class QRCodeController: UIViewController {
     public var callback: QRCodeControllerCallback?
     public var borderColor = UIColor.greenColor()
     public var borderWidth: CGFloat = 2
+    public var vibrate = true
     
     private var decodedOutput: String? {
         didSet {
             if let newValue = decodedOutput {
                 if newValue != oldValue {
-                    callback?(newValue)
+                    decodedString(newValue)
                 }
             }
+        }
+    }
+    
+    private func decodedString(string: String) {
+        callback?(string)
+        
+        if vibrate {
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         }
     }
     
