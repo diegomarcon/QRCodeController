@@ -15,6 +15,7 @@ public class QRCodeController: UIViewController {
     public var borderColor = UIColor.greenColor()
     public var borderWidth: CGFloat = 2
     public var vibrate = true
+    public var suppotedMetadataObjectTypes = [AVMetadataObjectTypeQRCode]
     
     private var decodedOutput: String? {
         didSet {
@@ -54,7 +55,7 @@ public class QRCodeController: UIViewController {
         let captureMetadataOutput = AVCaptureMetadataOutput()
         captureSession.addOutput(captureMetadataOutput)
         captureMetadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
-        captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
+        captureMetadataOutput.metadataObjectTypes = suppotedMetadataObjectTypes
     }
     
     private func configurePreviewLayer() {
