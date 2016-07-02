@@ -22,7 +22,7 @@ pod "QRCodeController"
 
 ## Author
 
-Diego Marcon, diego.marcon@corp.globo.com
+Diego Marcon, dm.marcon@gmail.com
 
 ## License
 
