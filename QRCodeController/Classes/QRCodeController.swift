@@ -29,6 +29,7 @@ public class QRCodeController: UIViewController {
     }
     
     private func decodedString(string: String) {
+        print("QRCodeController decoded string: \(string)")
         callback?(string)
         
         if vibrate {
