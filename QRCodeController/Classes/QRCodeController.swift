@@ -15,6 +15,7 @@ public class QRCodeController: UIViewController {
     public var borderColor = UIColor.greenColor()
     public var borderWidth: CGFloat = 2
     public var vibrate = true
+    public var closeAfterCapture = true
     public var suppotedMetadataObjectTypes = [AVMetadataObjectTypeQRCode]
     
     private var decodedOutput: String? {
@@ -32,6 +33,10 @@ public class QRCodeController: UIViewController {
         
         if vibrate {
             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        }
+
+        if closeAfterCapture {
+            dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
