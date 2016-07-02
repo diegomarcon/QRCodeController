@@ -1,15 +1,9 @@
 # QRCodeController
 
-[![CI Status](http://img.shields.io/travis/Diego Marcon/QRCodeController.svg?style=flat)](https://travis-ci.org/Diego Marcon/QRCodeController)
-[![Version](https://img.shields.io/cocoapods/v/QRCodeController.svg?style=flat)](http://cocoapods.org/pods/QRCodeController)
-[![License](https://img.shields.io/cocoapods/l/QRCodeController.svg?style=flat)](http://cocoapods.org/pods/QRCodeController)
-[![Platform](https://img.shields.io/cocoapods/p/QRCodeController.svg?style=flat)](http://cocoapods.org/pods/QRCodeController)
-
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+Customisable QR Code Reader View Controller written in Swift
 
 ## Requirements
+- iOS 8.0+
 
 ## Installation
 
@@ -17,8 +11,35 @@ QRCodeController is available through [CocoaPods](http://cocoapods.org). To inst
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "QRCodeController"
+pod 'QRCodeController', '~> 0.1'
 ```
+
+## Usage
+
+Create QRCodeController
+```Swift
+let qrCodeController = QRCodeController()
+```
+
+Add callback for decoded strings
+```Swift
+qrCodeController.callback = { result in
+    print(result)
+}
+```
+
+Present it
+```Swift
+presentViewController(qrCodeController, animated: true, completion: nil)
+```
+
+## Customisable Properties 
+
+- `var borderColor: UIColor`: Sets detection border color. Default is `UIColor.greenColor()`
+- `var borderWidth: CGFloat`: Sets detection border width. Default is `2`
+- `var vibrate: Bool`: Vibrate on code detection. Default is `true`
+- `var closeAfterCapture: Bool`: Close controller after first capture. Default is `true`
+- `var suppotedMetadataObjectTypes: [String]`: Supported metadata object types. Default is `[AVMetadataObjectTypeQRCode]`. More `AVMetadataObjectType's` can be found on `AVMetadataObject` reference.
 
 ## Author
 
