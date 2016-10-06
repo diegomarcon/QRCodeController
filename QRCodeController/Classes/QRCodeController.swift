@@ -2,23 +2,23 @@ import UIKit
 import AVFoundation
 import AudioToolbox
 
-public class QRCodeController: UIViewController {
+open class QRCodeController: UIViewController {
     
     public typealias QRCodeControllerCallback = (String) -> ()
     
-    private let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+    private let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
     private lazy var captureSession = AVCaptureSession()
-    private lazy var borderView = UIView()
-    private var previewLayer: AVCaptureVideoPreviewLayer?
+    fileprivate lazy var borderView = UIView()
+    fileprivate var previewLayer: AVCaptureVideoPreviewLayer?
     
-    public var callback: QRCodeControllerCallback?
-    public var borderColor = UIColor.greenColor()
-    public var borderWidth: CGFloat = 2
-    public var vibrate = true
-    public var closeAfterCapture = true
-    public var suppotedMetadataObjectTypes = [AVMetadataObjectTypeQRCode]
+    open var callback: QRCodeControllerCallback?
+    open var borderColor = UIColor.green
+    open var borderWidth: CGFloat = 2
+    open var vibrate = true
+    open var closeAfterCapture = true
+    open var suppotedMetadataObjectTypes = [AVMetadataObjectTypeQRCode]
     
-    private var decodedOutput: String? {
+    fileprivate var decodedOutput: String? {
         didSet {
             if let newValue = decodedOutput {
                 if newValue != oldValue {
@@ -28,7 +28,7 @@ public class QRCodeController: UIViewController {
         }
     }
     
-    private func decodedString(string: String) {
+    private func decodedString(_ string: String) {
         print("QRCodeController decoded string: \(string)")
         callback?(string)
         
@@ -37,11 +37,11 @@ public class QRCodeController: UIViewController {
         }
 
         if closeAfterCapture {
-            dismissViewControllerAnimated(true, completion: nil)
+            dismiss(animated: true, completion: nil)
         }
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
 
         do {
@@ -56,11 +56,11 @@ public class QRCodeController: UIViewController {
         }
     }
     
-    private func configureCaptureSession(input: AVCaptureDeviceInput) {
+    private func configureCaptureSession(_ input: AVCaptureDeviceInput) {
         captureSession.addInput(input)
         let captureMetadataOutput = AVCaptureMetadataOutput()
         captureSession.addOutput(captureMetadataOutput)
-        captureMetadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+        captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         captureMetadataOutput.metadataObjectTypes = suppotedMetadataObjectTypes
     }
     
@@ -72,16 +72,16 @@ public class QRCodeController: UIViewController {
     }
     
     private func configureBorderView() {
-        borderView.layer.borderColor = borderColor.CGColor
+        borderView.layer.borderColor = borderColor.cgColor
         borderView.layer.borderWidth = borderWidth
         view.addSubview(borderView)
-        view.bringSubviewToFront(borderView)
+        view.bringSubview(toFront: borderView)
     }
 }
 
 extension QRCodeController: AVCaptureMetadataOutputObjectsDelegate {
     
-    public func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+    public func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         
         guard metadataObjects != nil && metadataObjects.count > 0,
             let metadataObject = metadataObjects[0] as? AVMetadataMachineReadableCodeObject else {
@@ -89,11 +89,11 @@ extension QRCodeController: AVCaptureMetadataOutputObjectsDelegate {
                 return
         }
         
-        updateBorderViewBounds(previewLayer?.transformedMetadataObjectForMetadataObject(metadataObject))
+        updateBorderViewBounds(previewLayer?.transformedMetadataObject(for: metadataObject))
         decodedOutput = metadataObject.stringValue
     }
     
-    private func updateBorderViewBounds(barCodeObject: AVMetadataObject?) {
-        borderView.frame = barCodeObject == nil ? CGRectZero : barCodeObject!.bounds
+    private func updateBorderViewBounds(_ barCodeObject: AVMetadataObject?) {
+        borderView.frame = barCodeObject == nil ? CGRect.zero : barCodeObject!.bounds
     }
 }

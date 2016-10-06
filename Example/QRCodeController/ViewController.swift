@@ -11,7 +11,7 @@ import QRCodeController
 
 class ViewController: UIViewController {
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         let viewController = QRCodeController()
@@ -20,13 +20,11 @@ class ViewController: UIViewController {
             print(result)
         }
         
-        presentViewController(viewController, animated: true, completion: nil)
+        present(viewController, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }
-
