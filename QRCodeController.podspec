@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'QRCodeController'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'Simple QRCode Reader view controller written in Swift.'
 
   s.description      = <<-DESC
