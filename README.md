@@ -11,7 +11,7 @@ QRCodeController is available through [CocoaPods](http://cocoapods.org). To inst
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'QRCodeController', '~> 0.1'
+pod 'QRCodeController', '~> 0.2'
 ```
 
 ## Usage
